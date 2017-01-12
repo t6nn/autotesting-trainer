@@ -131,10 +131,11 @@ function fetchRandomNews($count = 3)
 
 function rssNodeToNewsItem($rssNode)
 {
+    $url = $rssNode->getElementsByTagName('link')->item(0)->textContent;
     return [
         'title' => $rssNode->getElementsByTagName('title')->item(0)->textContent,
-        'url' => $rssNode->getElementsByTagName('link')->item(0)->textContent,
-        'hash' => md5($rssNode->getElementsByTagName('link')->item(0)->textContent),
+        'url' => $url,
+        'hash' => sha1($url),
         'description' => $rssNode->getElementsByTagName('description')->item(0)->textContent
     ];
 }
