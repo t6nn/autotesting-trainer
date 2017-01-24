@@ -38,3 +38,23 @@ body {
 .rating > label:active {
   position:relative;
 }
+
+.rated-1 h2::before {
+  content: '\01f44e\01f44e';
+}
+
+.rated-2 h2::before {
+  content: '\01f44e';
+}
+
+.rated-3 h2::before {
+  content: '';
+}
+
+.rated-4 h2::before {
+  content: '\01f44d';
+}
+
+.rated-5 h2::before {
+  content: '\01f44d\01f44d';
+}
