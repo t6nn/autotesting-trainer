@@ -1,0 +1,1 @@
+vendor\bin\steward run -vv --tests-dir ui --fixtures-dir fixtures staging chrome

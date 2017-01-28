@@ -1,0 +1,19 @@
+{
+    "name": "t6nn/newsy-tests",
+    "description": "Tests for Newsy",
+    "type": "project",
+    "authors": [
+        {
+            "name": "t6nn",
+            "email": "dev@t6nn.eu"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Newsy\\Tests\\Ui\\": "ui/"
+        }
+    },
+    "require": {
+        "lmc/steward": "^2.1"
+    }
+}

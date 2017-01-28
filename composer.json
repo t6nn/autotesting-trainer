@@ -1,0 +1,12 @@
+{
+    "name": "t6nn/newsy",
+    "description": "Newsy the Nosey News Reader",
+    "type": "project",
+    "authors": [
+        {
+            "name": "t6nn",
+            "email": "dev@t6nn.eu"
+        }
+    ],
+    "require": {}
+}

@@ -1,0 +1,1 @@
+java -Dwebdriver.chrome.driver=bin/chromedriver.exe -jar vendor\bin\selenium-server-standalone-3.0.1.jar
