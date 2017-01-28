@@ -1,4 +1,5 @@
 <?php
+require_once ('../vendor/autoload.php');
 session_start();
 if (isset($_POST['rating']) && isset($_POST['url'])) {
     saveRating(base64_decode($_POST['url']), $_POST['rating']);

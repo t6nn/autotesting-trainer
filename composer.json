@@ -8,5 +8,10 @@
             "email": "dev@t6nn.eu"
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "Newsy\\": "src/"
+        }
+    },
     "require": {}
 }
