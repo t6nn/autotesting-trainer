@@ -44,4 +44,25 @@ class NewsComponent extends AbstractComponent
         return $this->root->findElements(WebDriverBy::cssSelector(self::RATE_OPTIONS_SELECTOR));
     }
 
+    public function rate($rating) {
+        foreach($this->findRateOptions() as $el) {
+            if($el->getAttribute('value') == $rating) {
+                $id = $el->getAttribute('id');
+                $label = $this->findByCss("label[for='$id']");
+                $label->click();
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function getRating() {
+        foreach($this->findRateOptions() as $el) {
+            if($el->isSelected()) {
+                return $el->getAttribute('value');
+            }
+        }
+        return -1;
+    }
+
 }

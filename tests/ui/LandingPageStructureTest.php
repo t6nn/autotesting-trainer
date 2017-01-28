@@ -19,11 +19,13 @@ class LandingPageStructureTest extends AbstractTestCase
         $this->wd->get(self::PAGE_URL);
     }
 
-    public function testShouldHaveNameInTitle() {
+    public function testShouldHaveNameInTitle()
+    {
         $this->assertContains('Newsy', $this->wd->getTitle(), 'Application name must be in the title.');
     }
 
-    public function testShouldDisplayThreeNewsItems() {
+    public function testShouldDisplayThreeNewsItems()
+    {
         $news = $this->findMultipleByCss('div.news-item');
         $this->assertCount(3, $news, 'There must be three news items on the front page');
         $index = 1;
@@ -32,7 +34,16 @@ class LandingPageStructureTest extends AbstractTestCase
         }
     }
 
-    private function validateNewsItem(RemoteWebElement $item, $index) {
+    public function testRateMarksCorrectRating()
+    {
+        $newsComponent = new NewsComponent($this, $this->findByCss('div.news-item'));
+        $this->assertEquals(-1, $newsComponent->getRating(), 'Initially, rating should not be set');
+        $this->assertTrue($newsComponent->rate(4), 'Must be possible to rate a news item');
+        $this->assertEquals(4, $newsComponent->getRating(), 'Rating must be set to 4');
+    }
+
+    private function validateNewsItem(RemoteWebElement $item, $index)
+    {
         $newsComponent = new NewsComponent($this, $item);
         $this->assertNotEmpty($newsComponent->findHeader()->getText(), "Item #$index header must not be empty");
         $this->assertCount(5, $newsComponent->findRateOptions(), "Item #$index must have a 5-star rating option.");
