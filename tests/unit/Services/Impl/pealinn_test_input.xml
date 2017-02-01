@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<rss xmlns:media="http://search.yahoo.com/mrss/" version="2.0">
+    <channel>
+        <title><![CDATA[news]]></title>
+        <link>http://www.pealinn.ee/newset</link>
+        <item>
+            <title>First item title</title>
+            <link>
+                http://first.item.url
+            </link>
+            <description>First item description</description>
+        </item>
+        <item>
+            <title>Second item title</title>
+            <link>
+                http://second.item.url
+            </link>
+            <description>Second item description</description>
+        </item>
+        <item>
+            <title>Third item title</title>
+            <link>
+                http://third.item.url
+            </link>
+            <description>Third item description</description>
+        </item>
+    </channel>
+</rss>

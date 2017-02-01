@@ -13,7 +13,16 @@
             "Newsy\\": "src/php/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Newsy\\Tests\\Unit\\": "tests/unit/"
+        }
+    },
     "require": {
         "twig/twig": "^1.31"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "5.5.*",
+        "phake/phake": "@stable"
     }
 }
