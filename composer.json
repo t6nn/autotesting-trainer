@@ -10,8 +10,10 @@
     ],
     "autoload": {
         "psr-4": {
-            "Newsy\\": "src/"
+            "Newsy\\": "src/php/"
         }
     },
-    "require": {}
+    "require": {
+        "twig/twig": "^1.31"
+    }
 }

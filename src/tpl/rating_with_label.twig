@@ -1,0 +1,7 @@
+{% if item.user_rating > 0 %}
+    {% set selected = 'checked="checked"' %}
+{% else %}
+    {% set selected = '' %}
+{% endif %}
+<input type="radio" id="star{{ rating }}_{{ item.hash }}" name="{{ name }}" value="{{ rating }}" {{ selected }}/>
+<label for="star{{ rating }}_{{ item.hash }}">{{ rating }} star{% if rating > 1 %}s{% endif %}</label>
