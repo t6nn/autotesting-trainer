@@ -1,7 +1,7 @@
 -- DROP DATABASE IF EXISTS newsy;
-CREATE USER IF NOT EXISTS 'newsy'@'localhost' IDENTIFIED BY 'newsy';
-CREATE DATABASE IF NOT EXISTS newsy;
-USE newsy;
+CREATE USER IF NOT EXISTS 'newsy'@'%' IDENTIFIED BY 'newsy';
+-- CREATE DATABASE IF NOT EXISTS newsy;
+-- USE newsy;
 
 CREATE TABLE IF NOT EXISTS `ratings` (
   `id` INT NOT NULL AUTO_INCREMENT ,
@@ -16,4 +16,4 @@ CREATE TABLE IF NOT EXISTS `ratings` (
   UNIQUE `idx_user_url` (`user`, `url`)
 ) ENGINE = InnoDB;
 
-GRANT SELECT, INSERT, UPDATE ON newsy.ratings TO 'newsy'@'localhost';
+GRANT SELECT, INSERT, UPDATE ON ratings TO 'newsy'@'%';

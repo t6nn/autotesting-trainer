@@ -14,8 +14,13 @@ use Newsy\Services\NewsSource;
 use Newsy\Services\User;
 use Newsy\Services\UserRatings;
 
-class PealinnNewsSource implements NewsSource
+class RssNewsSource implements NewsSource
 {
+
+    /**
+     * @var string
+     */
+    private $url;
 
     /**
      * @var User
@@ -28,34 +33,28 @@ class PealinnNewsSource implements NewsSource
     private $userRatings;
 
     /**
-     * @var DOMLoader
-     */
-    private $domLoader;
-
-    /**
      * PealinnNewsSource constructor.
+     * @param string $url
      * @param User $currentUser
      * @param UserRatings $userRatings
-     * @param DOMLoader $domLoader
      */
-    public function __construct(User $currentUser, UserRatings $userRatings, DOMLoader $domLoader)
+    public function __construct($url, User $currentUser, UserRatings $userRatings)
     {
+        $this->url = $url;
         $this->currentUser = $currentUser;
         $this->userRatings = $userRatings;
-        $this->domLoader = $domLoader;
     }
 
     public function fetchRandomNews($count = 3)
     {
-        $url = "http://www.pealinn.ee/rss.php?type=news";
-
-        $xmlDoc = $this->domLoader->loadFromUrl($url);
+        $xmlDoc = new \DOMDocument();
+        $xmlDoc->load($this->url);
         $channel = $xmlDoc->getElementsByTagName('channel')->item(0);
         $news = $channel->getElementsByTagName('item');
         $randomNews = [];
         for ($i = 0; $i < $count; $i++) {
             $num = rand(0, $news->length - 1);
-            //$num = $i;
+            $num = $i;
             $item = $news->item($num);
             array_push($randomNews, $this->rssNodeToNewsItem($item));
         }

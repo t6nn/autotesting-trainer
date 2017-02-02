@@ -1,22 +1,14 @@
 <?php
 require_once ('../vendor/autoload.php');
 session_start();
-if (isset($_POST['rating']) && isset($_POST['url'])) {
-    saveRating(base64_decode($_POST['url']), $_POST['rating']);
-    echo "OK";
-    exit();
-}
 
-$twigLoader = new Twig_Loader_Filesystem(dirname(__FILE__).'/../src/tpl');
-$twig = new Twig_Environment($twigLoader, [
-    //'cache' => dirname(__FILE__).'/../cache'
-]);
+$builder = new DI\ContainerBuilder();
+$builder->addDefinitions('../src/php/config.php');
+$container = $builder->build();
 
-echo $twig->render('index.twig', [
-    'news' => fetchRandomNews()
-]);
-
+$container->get(\Newsy\Controllers\LandingPageController::class)->handleRequest();
 ?>
+
 <?php
 
 function fetchRandomNews($count = 3)

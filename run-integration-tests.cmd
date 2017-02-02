@@ -1,0 +1,1 @@
+vendor\bin\phpunit --configuration tests\integration\phpunit.xml --log-junit tests\logs\integration-test-results\results.xml --testdox-html tests\logs\integration-test-results\results.html  tests\integration

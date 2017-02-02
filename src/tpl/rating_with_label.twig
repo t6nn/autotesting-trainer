@@ -1,4 +1,4 @@
-{% if item.user_rating > 0 %}
+{% if item.userRating.roundedValue == rating %}
     {% set selected = 'checked="checked"' %}
 {% else %}
     {% set selected = '' %}

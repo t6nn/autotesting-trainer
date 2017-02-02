@@ -1,0 +1,19 @@
+ratings:
+  -
+    id: 1
+    rating: 5
+    url: "http://test.url"
+    user: "1"
+    rated: 2017-02-02 11:12:13
+  -
+    id: 2
+    rating: 4
+    url: "http://test.url"
+    user: "2"
+    rated: 2017-02-02 11:12:13
+  -
+    id: 3
+    rating: 2
+    url: "http://other.url"
+    user: "3"
+    rated: 2017-02-02 11:12:13

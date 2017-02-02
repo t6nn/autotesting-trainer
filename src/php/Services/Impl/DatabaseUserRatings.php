@@ -18,12 +18,35 @@ class DatabaseUserRatings implements UserRatings
 {
 
     /**
+     * @var \mysqli
+     */
+    private $conn;
+
+    /**
+     * DatabaseUserRatings constructor.
+     * @param \mysqli $conn
+     */
+    public function __construct(\mysqli $conn)
+    {
+        $this->conn = $conn;
+    }
+
+
+    /**
      * @param NewsItem $item
      * @return Rating
      */
     public function fetchAverageRating(NewsItem $item)
     {
-
+        $average = 0;
+        if ($stmt = $this->conn->prepare('SELECT AVG(rating) FROM ratings WHERE url = ?')) {
+            $stmt->bind_param('s', $item->getUrl());
+            $stmt->execute();
+            $stmt->bind_result($average);
+            $stmt->fetch();
+            $stmt->close();
+        }
+        return new Rating($average);
     }
 
     /**
@@ -33,17 +56,30 @@ class DatabaseUserRatings implements UserRatings
      */
     public function fetchUserRating(NewsItem $item, User $user)
     {
-        // TODO: Implement fetchUserRating() method.
+        $rating = -1;
+        if ($stmt = $this->conn->prepare('SELECT rating FROM ratings WHERE url = ? AND user = ?')) {
+            $stmt->bind_param('ss', $item->getUrl(), $user->getId());
+            $stmt->execute();
+            $stmt->bind_result($rating);
+            $stmt->fetch();
+            $stmt->close();
+        }
+        return new Rating($rating);
     }
 
     /**
-     * @param NewsItem $item
+     * @param string $url
      * @param User $user
      * @param Rating $rating
      * @return mixed
      */
-    public function storeUserRating(NewsItem $item, User $user, Rating $rating)
+    public function storeUserRating($url, User $user, Rating $rating)
     {
-        // TODO: Implement storeUserRating() method.
+        if ($stmt = $this->conn->prepare('INSERT INTO ratings (rating, url, user) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE rating = VALUES(rating), rated = CURRENT_TIMESTAMP')) {
+            $stmt->bind_param('iss', $rating->getExactValue(), $url, $user->getId());
+            $stmt->execute();
+            $stmt->close();
+        }
+
     }
 }

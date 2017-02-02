@@ -1,0 +1,1 @@
+vendor\bin\phpunit --log-junit tests\logs\unit-test-results\results.xml --testdox-html tests\logs\unit-test-results\results.html tests\unit

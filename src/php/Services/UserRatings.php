@@ -24,10 +24,10 @@ interface UserRatings
     public function fetchUserRating(NewsItem $item, User $user);
 
     /**
-     * @param NewsItem $item
+     * @param string $url
      * @param User $user
      * @param Rating $rating
      * @return mixed
      */
-    public function storeUserRating(NewsItem $item, User $user, Rating $rating);
+    public function storeUserRating($url, User $user, Rating $rating);
 }

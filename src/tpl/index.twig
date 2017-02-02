@@ -54,7 +54,7 @@
     <!-- Example row of columns -->
     <div class="row">
         {% for item in news %}
-        <div class="col-md-4 news-item rated-{{ item.avg_rating|round  }}">
+        <div class="col-md-4 news-item rated-{{ item.averageRating.roundedValue  }}">
             <h2 class="">{{ item.title }}</h2>
             {{ item.description|raw }}
             <p>
@@ -66,7 +66,7 @@
                     {% for ratingOption in 5..1 %}
                         {% include 'rating_with_label.twig' with {'item': item, 'rating': ratingOption} %}
                     {% endfor %}
-                    <input type="hidden" name="url" value="{{ item.url_encoded }}" ?>
+                    <input type="hidden" name="url" value="{{ item.encodedUrl }}" ?>
                 </fieldset>
             </div>
         </div>
