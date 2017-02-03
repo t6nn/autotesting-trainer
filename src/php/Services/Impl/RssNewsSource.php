@@ -54,7 +54,7 @@ class RssNewsSource implements NewsSource
         $randomNews = [];
         for ($i = 0; $i < $count; $i++) {
             $num = rand(0, $news->length - 1);
-            $num = $i;
+            //$num = $i;
             $item = $news->item($num);
             array_push($randomNews, $this->rssNodeToNewsItem($item));
         }
