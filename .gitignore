@@ -4,3 +4,4 @@
 /vendor/
 /tests/vendor/
 /tests/logs/
+.sonar

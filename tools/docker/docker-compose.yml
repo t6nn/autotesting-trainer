@@ -20,6 +20,7 @@ services:
       - "50000:50000"
     links:
       - gogs
+      - sonarqube
   gogs:
     image: gogs/gogs
     # mounting starts generating errors on windows :(
@@ -33,3 +34,8 @@ services:
       - "3000"
     links:
       - db
+  sonarqube:
+    image: sonarqube
+    ports:
+      - "9000:9000"
+      - "9092:9092"

@@ -1,1 +1,1 @@
-vendor\bin\phpunit --configuration tests\integration\phpunit.xml --log-junit tests\logs\integration-test-results\results.xml --testdox-html tests\logs\integration-test-results\results.html  tests\integration
+vendor\bin\phpunit --configuration tests\integration\phpunit.xml --log-junit tests\logs\integration-test-results\results.xml --whitelist src\php --coverage-clover tests\logs\integration-test-results\coverage_clover.xml --coverage-html tests\logs\integration-test-results\coverage_html --testdox-html tests\logs\integration-test-results\results.html tests\integration
