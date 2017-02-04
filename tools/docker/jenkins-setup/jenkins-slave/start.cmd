@@ -1,0 +1,1 @@
+javaws http://localhost:8085/computer/windows-php/slave-agent.jnlp

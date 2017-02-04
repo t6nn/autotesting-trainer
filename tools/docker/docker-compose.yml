@@ -6,6 +6,30 @@ services:
       MYSQL_ROOT_PASSWORD: toot
       MYSQL_DATABASE: newsy
     volumes:
-      - ./newsy-db-setup/:/docker-entrypoint-initdb.d/
+      - ./db-setup/:/docker-entrypoint-initdb.d/
     ports:
       - "3309:3306"
+    expose:
+      - "3306"
+  jenkins:
+    image: jenkins
+    volumes:
+      - ./jenkins_home/:/var/jenkins_home
+    ports:
+      - "8085:8080"
+      - "50000:50000"
+    links:
+      - gogs
+  gogs:
+    image: gogs/gogs
+    # mounting starts generating errors on windows :(
+    volumes:
+      - ./gogs_home/git:/data/git
+      - ./gogs_home/gogs:/data/gogs
+    ports:
+      - "10022:22"
+      - "10080:3000"
+    expose:
+      - "3000"
+    links:
+      - db
